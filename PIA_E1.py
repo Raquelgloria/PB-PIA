@@ -27,16 +27,27 @@ if respuesta.status_code == 200:
     acceso = {
         "Authorization": "Bearer " + token
     }
-    top_5_global = []
-    playlist_id = "34NbomaTu7YuOYnky8nLXL"  
-    url_1 = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"    # Solicitar las pistas de la playlist
-    lista = requests.get(url_1, headers=acceso)
     
-    # Parsear la respuesta JSON
-    playlist = lista.json()
-    print(playlist)
-    
-        
+    artista_id = "5L1lO4eRHmJ7a0Q6csE5cT"  #LISA de BLACKPINK,se puede cambiar el id
+    # Por motivo de prueba, se coloca el ID del artista directamente.
+    # Sin embrago la API de Spotify cuenta con la url para poder buscar en nombre de artista.
+    # sin necesidad de tener el ID, solo ingresando el nombre.
+    url_1 = f"https://api.spotify.com/v1/artists/{artista_id}"
+
+    try:
+        datos = requests.get(url_1,headers = acceso)
+        datos.raise_for_status()
+        artistas = datos.json()
+        artista = {
+            "nombre": artistas["name"],
+            "generos": artistas["genres"],
+            "seguidores": artistas["followers"]["total"],
+            "popularidad": artistas["popularity"],
+            "url_spotify": artistas["external_urls"]["spotify"]
+        }
+        print(artista)
+    except requests.exceptions.ConnectionError:
+        print("Error : no se pudo conectar a la API. verificar conexion y token") 
 
 else:
     print("Error al obtener el token de acceso:", respuesta.status_code)
