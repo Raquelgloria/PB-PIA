@@ -1,4 +1,4 @@
-import requests
+import requests, re
 
 def datos_artistas (coachella, i):
     for dia in coachella:
@@ -8,16 +8,25 @@ def datos_artistas (coachella, i):
             try:
                 datos = requests.get(url_artista,headers = acceso)
                 datos.raise_for_status()
+                #Extracción de datos
                 info = datos.json()
+                #Verificación de datos
+                #Los seguidores y popularidad son datos de tipo entero, por lo que no se necesitan verificar
                 if len(info["genres"]) == 0:
                     info["genres"] = "desconocido"
+                patron_id = re.compile(r'\w+')
+                mo1 = re.match(patron_id, info["id"])
+                if not mo1:
+                    print(f"Error con el artista: {info["name"]} en su id")
+                #Limpieza de datos
                 artista = {
                     "nombre": info["name"],
+                    "id": info["id"],
                     "generos": info["genres"],
                     "seguidores": info["followers"]["total"],
-                    "popularidad": info["popularity"]
-                }
+                    "popularidad": info["popularity"]}
                 #print(artista)
+                #Guardar datos
                 informacion = datos_coachella[i]
                 informacion.append(artista)
                     
