@@ -1,0 +1,5 @@
+Los 5 géneros más escuchados en el dia 1[('desconocido', 20), ('tech house', 5), ('house', 4), ('melodic techno', 3), ('art pop', 2)]Los 5 géneros más escuchados en el día 2:[('desconocido', 10), ('techno', 8), ('melodic house', 4), ('acid techno', 4), ('melodic techno', 4)]Los 5 géneros más escuchados en el día 3:[('desconocido', 13), ('afro house', 6), ('melodic house', 4), ('latin house', 4), ('tribal house', 4)]Los 5 géneros más escuchados en COACHELLA:[('desconocido', 43), ('techno', 12), ('melodic house', 10), ('melodic techno', 10), ('tech house', 9)]
+Suma total de seguidores día 1: 146328149
+Suma total de seguidores día 2: 115955130
+Suma total de seguidores día 3: 180784550
+Suma total de seguidores del festival: 443067829
